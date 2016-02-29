@@ -10,7 +10,7 @@ namespace Calc
     {
         public static void Main(string[] args)
         {
-            string expression = Console.ReadLine();
+            Expression.userExpression = Console.ReadLine();
         }
     }
 }

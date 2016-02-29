@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Calc;
 
-namespace UnitTestProject1
+namespace CalcTest
 {
     [TestClass]
     public class CalcTest
@@ -18,6 +19,11 @@ namespace UnitTestProject1
 //BAD input example +2
 //You do not need to handle the cases of usage of parenthesis or expressions with more than 2 terms.
         {
+        // Arrange - Scenario Setup
+        Expression userExpression = new Expression();
+        // Act - Do the thing you want to test
+        
+        // Assert - Did it work as expected?
             
         }
     }
