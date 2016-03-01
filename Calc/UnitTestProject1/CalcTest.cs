@@ -8,7 +8,7 @@ namespace CalcTest
     public class CalcTest
     {
         [TestMethod]
-        public void ExpressionTest()
+        public void ExpressionHookedUp()
 //Prove you can extract the terms of the expression.
 //Prove you can extract the operation embedded in the expression.
 //Ensure you have examples of GOOD and BAD input and have you Parse class throw an exception when there's an error.
@@ -22,9 +22,20 @@ namespace CalcTest
         // Arrange - Scenario Setup
         Expression userExpression = new Expression();
         // Act - Do the thing you want to test
-        
+
         // Assert - Did it work as expected?
-            
+        Assert.IsNotNull(userExpression);
+        }
+
+        [TestMethod]
+        public void ProveSpacesAreRemoved()
+        {
+            // Arrange - Scenario Setup
+            Expression userExpression = new Expression();
+            // Act - Do the thing you want to test
+            string expression = "5 + 6";
+            // Assert - Did it work as expected?
+            Assert.AreEqual(userExpression.RemoveSpaceFromInput(expression), "5+6");
         }
     }
 }
