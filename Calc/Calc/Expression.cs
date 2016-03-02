@@ -16,5 +16,12 @@ namespace Calc
             // Is this the regex to look for spaces? /\s+/g
             return modifiedExpression;
         }
+
+        public char[] GetTermsFromExpression(string userExpression)
+        {
+            char term1 = userExpression[0];
+            char term2 = userExpression[2];
+            return new char[] { term1, term2 };
+        }
     }
 }

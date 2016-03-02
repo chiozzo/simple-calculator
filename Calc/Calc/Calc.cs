@@ -10,6 +10,9 @@ namespace Calc
     {
         public static void Main(string[] args)
         {
+            Expression userExpression = new Expression();
+            string userInput = "5+6";
+            Console.WriteLine(userExpression.GetTermsFromExpression(userInput));
         }
     }
 }
