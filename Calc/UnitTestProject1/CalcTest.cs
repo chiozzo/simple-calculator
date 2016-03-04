@@ -8,87 +8,26 @@ namespace CalcTest
     [TestClass]
     public class CalcTest
     {
-        public string expression { get; set; }
-
-        public CalcTest()
-        {
-            expression = "5 + 6";
-        }
-
         [TestMethod]
         public void ProveInstantiateExpression()
         {
         // Arrange - Scenario Setup
-        Expression userExpression = new Expression();
+        Expression parseExpression = new Expression();
         // Assert - Did it work as expected?
-        Assert.IsNotNull(userExpression);
+        Assert.IsNotNull(parseExpression);
         }
 
         [TestMethod]
-        public void ProveSpacesAreRemoved()
+        public void ProveExpressionParsed()
         {
             // Arrange - Scenario Setup
-            Expression userExpression = new Expression();
+            Expression parseExpression = new Expression();
+            string testExpressionSpace = "5 + 6";
             // Act - Do the thing you want to test
-            string expected = "5+6";
-            string actual = userExpression.RemoveSpaceFromInput(expression);
+            object[] expected = { 5, '+', 6 };
+            object[] actual = parseExpression.ParseExpression(testExpressionSpace);
             // Assert - Did it work as expected?
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void ProveBothTermsAreExtracted()
-        //Prove you can extract the terms of the expression.
-        {
-            // Arrange - Scenario Setup
-            Expression userExpression = new Expression();
-            string testExpression = "5+6";
-            // Act - Do the thing you want to test
-            char[] expected = { '5', '6' };
-            char[] actual = { testExpression[0], testExpression[2] };
-            // Assert - Did it work as expected?
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void Prove1stTermIsExtracted()
-        {
-            // Arrange - Scenario Setup
-            Expression userExpression = new Expression();
-            string testExpression = userExpression.RemoveSpaceFromInput(expression);
-            // Regex rgx = new Regex("[+-/*]");
-            // Act - Do the thing you want to test
-            char expected = '5';
-            char actual = testExpression[0];
-            // Assert - Did it work as expected?
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void ProveOperationIsExtracted()
-        //Prove you can extract the operation embedded in the expression.
-        {
-            // Arrange - Scenario Setup
-            Expression userExpression = new Expression();
-            string testExpression = userExpression.RemoveSpaceFromInput(expression);
-            // Act - Do the thing you want to test
-            char expected = '+';
-            char actual = testExpression[1];
-            // Assert - Did it work as expected?
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void Prove2ndTermIsExtracted()
-        {
-            // Arrange - Scenario Setup
-            Expression userExpression = new Expression();
-            string testExpression = userExpression.RemoveSpaceFromInput(expression);
-            // Act - Do the thing you want to test
-            char expected = '6';
-            char actual = testExpression[2];
-            // Assert - Did it work as expected?
-            Assert.AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
     }
 }
