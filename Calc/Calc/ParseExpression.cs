@@ -21,6 +21,7 @@ namespace Calc
             }
             char operand = userExpressionString[operandIndex];
             string[] terms = userExpression.Split(operand);
+            // It seems this condition is always true. What is going on here? Is terms[1] == "" when "5+" is provided?
             if (terms.Length != 2)
             {
                 throw new ArgumentException("You didn't provide enough terms for me to calculate.");
