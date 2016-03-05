@@ -29,6 +29,19 @@ namespace CalcTest
             // Assert - Did it work as expected?
             CollectionAssert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void ProveAdd()
+        {
+            // Arrange
+            Operations adder = new Operations();
+            object[] testExpression = { 5, '+', 6 };
+            // Act
+            int expected = 11;
+            int actual = adder.DoMath(testExpression);
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
 //Ensure you have examples of GOOD and BAD input and have you Parse class throw an exception when there's an error.
