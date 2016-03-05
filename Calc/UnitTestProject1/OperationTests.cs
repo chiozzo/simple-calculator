@@ -34,6 +34,19 @@ namespace CalcTest
         }
 
         [TestMethod]
+        public void ProveAddNegative()
+        {
+            // Arrange
+            Operations adder = new Operations();
+            object[] testExpression = { 321, '+', -322 };
+            // Act
+            int expected = -1;
+            double actual = adder.DoMath(testExpression);
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void ProveSubtract()
         {
             // Arrange
@@ -41,6 +54,19 @@ namespace CalcTest
             object[] testExpression = { 5, '-', 6 };
             // Act
             int expected = -1;
+            double actual = subtracter.DoMath(testExpression);
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ProveSubtractNegative()
+        {
+            // Arrange
+            Operations subtracter = new Operations();
+            object[] testExpression = { -5, '-', 6 };
+            // Act
+            int expected = -11;
             double actual = subtracter.DoMath(testExpression);
             // Assert
             Assert.AreEqual(expected, actual);
