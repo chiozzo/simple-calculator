@@ -9,10 +9,21 @@ namespace Calc
 {
     public class Expression
     {
+        public int counter { get; set; }
+
+        public Expression()
+        {
+            counter = 1;
+        }
+        public int IncrementExpressionCounter()
+        {
+            return counter++;
+        }
+
         public object[] ParseExpression(string userExpression)
         {
             string userExpressionString = userExpression.Replace(" ", "");
-            int operandIndex = userExpressionString.IndexOfAny(new char[] { '+', '-', '*', '/', '%' });
+            int operandIndex = userExpressionString.IndexOfAny(new char[] { '+', '-', '*', '/', '%' }, 1);
 
             if (operandIndex == -1)
             {
