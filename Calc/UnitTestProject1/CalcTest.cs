@@ -47,11 +47,11 @@ namespace CalcTest
         public void ProveSubtract()
         {
             // Arrange
-            Operations adder = new Operations();
+            Operations subtracter = new Operations();
             object[] testExpression = { 5, '-', 6 };
             // Act
             int expected = -1;
-            double actual = adder.DoMath(testExpression);
+            double actual = subtracter.DoMath(testExpression);
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -60,11 +60,11 @@ namespace CalcTest
         public void ProveMultiply()
         {
             // Arrange
-            Operations adder = new Operations();
+            Operations multiplier = new Operations();
             object[] testExpression = { 5, '*', 6 };
             // Act
             int expected = 30;
-            double actual = adder.DoMath(testExpression);
+            double actual = multiplier.DoMath(testExpression);
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -73,12 +73,12 @@ namespace CalcTest
         public void ProveDivide()
         {
             // Arrange
-            Operations adder = new Operations();
+            Operations divider = new Operations();
             object[] testExpression = { 5, '/', 6 };
             // Act
             // Why does this require that "expected" be of type double.
             double expected = 0.83333333333333333;
-            double actual = adder.DoMath(testExpression);
+            double actual = divider.DoMath(testExpression);
             // Assert
             Assert.AreEqual(expected, actual);
         }
@@ -87,11 +87,11 @@ namespace CalcTest
         public void ProveModulo()
         {
             // Arrange
-            Operations adder = new Operations();
+            Operations moduloer = new Operations();
             object[] testExpression = { 5, '%', 6 };
             // Act
             int expected = 5;
-            double actual = adder.DoMath(testExpression);
+            double actual = moduloer.DoMath(testExpression);
             // Assert
             Assert.AreEqual(expected, actual);
         }
