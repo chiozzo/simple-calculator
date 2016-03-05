@@ -31,6 +31,51 @@ namespace CalcTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ProveBadExpressionNotEnoughTerms()
+        {
+            Expression parseExpression = new Expression();
+            string badTestExpression = "+2";
+            parseExpression.ParseExpression(badTestExpression);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ProveBadExpressionNotEnoughTermsWithLetter()
+        {
+            Expression parseExpression = new Expression();
+            string badTestExpression = "x+2";
+            parseExpression.ParseExpression(badTestExpression);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ProveBadExpressionOutOfOrder()
+        {
+            Expression parseExpression = new Expression();
+            string badTestExpression = "75 75 -";
+            parseExpression.ParseExpression(badTestExpression);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ProveBadExpressionEquals()
+        {
+            Expression parseExpression = new Expression();
+            string badTestExpression = "6 = 9";
+            parseExpression.ParseExpression(badTestExpression);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ProveBadExpressionConstant()
+        {
+            Expression parseExpression = new Expression();
+            string badTestExpression = "x = 7";
+            parseExpression.ParseExpression(badTestExpression);
+        }
+
+        [TestMethod]
         public void ProveAdd()
         {
             // Arrange
