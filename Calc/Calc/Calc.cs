@@ -11,7 +11,13 @@ namespace Calc
         public static void Main(string[] args)
         {
             Console.WriteLine("Please give me a simple expression. I'm not a very good calculator.");
-            string userExpression = Console.ReadLine();
+            Console.Write("[0]> ");
+            string userExpressionString = Console.ReadLine();
+            Expression parse = new Expression();
+            object[] userExpressionObject = parse.ParseExpression(userExpressionString);
+            Operations math = new Operations();
+            Console.WriteLine("   = {0}", math.DoMath(userExpressionObject));
+            Console.ReadKey();
         }
     }
 }
