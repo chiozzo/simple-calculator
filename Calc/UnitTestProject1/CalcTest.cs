@@ -38,7 +38,60 @@ namespace CalcTest
             object[] testExpression = { 5, '+', 6 };
             // Act
             int expected = 11;
-            int actual = adder.DoMath(testExpression);
+            double actual = adder.DoMath(testExpression);
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ProveSubtract()
+        {
+            // Arrange
+            Operations adder = new Operations();
+            object[] testExpression = { 5, '-', 6 };
+            // Act
+            int expected = -1;
+            double actual = adder.DoMath(testExpression);
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ProveMultiply()
+        {
+            // Arrange
+            Operations adder = new Operations();
+            object[] testExpression = { 5, '*', 6 };
+            // Act
+            int expected = 30;
+            double actual = adder.DoMath(testExpression);
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ProveDivide()
+        {
+            // Arrange
+            Operations adder = new Operations();
+            object[] testExpression = { 5, '/', 6 };
+            // Act
+            // Why does this require that "expected" be of type double.
+            double expected = 0.83333333333333333;
+            double actual = adder.DoMath(testExpression);
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ProveModulo()
+        {
+            // Arrange
+            Operations adder = new Operations();
+            object[] testExpression = { 5, '%', 6 };
+            // Act
+            int expected = 5;
+            double actual = adder.DoMath(testExpression);
             // Assert
             Assert.AreEqual(expected, actual);
         }

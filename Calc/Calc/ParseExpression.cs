@@ -13,6 +13,7 @@ namespace Calc
         {
             string userExpressionString = userExpression.Replace(" ", "");
             int operandIndex = userExpressionString.IndexOfAny(new char[] { '+', '-', '*', '/', '%' });
+
             if (operandIndex == -1)
             {
                 throw new ArgumentException("You didn't provide a valid operator.");
@@ -24,26 +25,28 @@ namespace Calc
             {
                 throw new ArgumentException("You didn't provide enough terms for me to calculate.");
             }
+
             int term1;
             int term2;
+
             try
             {
                 term1 = Convert.ToInt32(terms[0]);
             }
             catch (Exception)
             {
-
                 throw new ArgumentException("Your first term is not a valid integer.");
             }
+
             try
             {
                 term2 = Convert.ToInt32(terms[1]);
             }
             catch (Exception)
             {
-
                 throw new ArgumentException("Your second term is not a valid integer.");
             }
+
             object[] parsedExpression = { term1, operand, term2 };
             return parsedExpression;
         }
@@ -51,7 +54,7 @@ namespace Calc
 
     public class Operations
     {
-        public int DoMath(object[] parsedExpression)
+        public double DoMath(object[] parsedExpression)
         {
             char operand;
 
@@ -109,14 +112,14 @@ namespace Calc
             return term1 * term2;
         }
 
-        public int Divide(object[] parsedExpression)
+        public double Divide(object[] parsedExpression)
         {
             int term1 = (int)parsedExpression[0];
             int term2 = (int)parsedExpression[2];
-            return term1 / term2;
+            return (double)term1 / (double)term2;
         }
 
-        public int Modulo(object[] parsedExpression)
+        public double Modulo(object[] parsedExpression)
         {
             int term1 = (int)parsedExpression[0];
             int term2 = (int)parsedExpression[2];
