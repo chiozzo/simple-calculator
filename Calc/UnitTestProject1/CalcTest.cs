@@ -89,6 +89,19 @@ namespace CalcTest
         }
 
         [TestMethod]
+        public void ProveAddBig()
+        {
+            // Arrange
+            Operations adder = new Operations();
+            object[] testExpression = { 321, '+', 654 };
+            // Act
+            int expected = 975;
+            double actual = adder.DoMath(testExpression);
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void ProveSubtract()
         {
             // Arrange
@@ -102,6 +115,19 @@ namespace CalcTest
         }
 
         [TestMethod]
+        public void ProveSubtractBig()
+        {
+            // Arrange
+            Operations subtracter = new Operations();
+            object[] testExpression = { 321, '-', 654 };
+            // Act
+            int expected = -333;
+            double actual = subtracter.DoMath(testExpression);
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void ProveMultiply()
         {
             // Arrange
@@ -109,6 +135,19 @@ namespace CalcTest
             object[] testExpression = { 5, '*', 6 };
             // Act
             int expected = 30;
+            double actual = multiplier.DoMath(testExpression);
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ProveMultiplyBig()
+        {
+            // Arrange
+            Operations multiplier = new Operations();
+            object[] testExpression = { 321, '*', 654 };
+            // Act
+            int expected = 209934;
             double actual = multiplier.DoMath(testExpression);
             // Assert
             Assert.AreEqual(expected, actual);
