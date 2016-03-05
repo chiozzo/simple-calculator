@@ -19,7 +19,7 @@ namespace Calc
                 string userExpressionString = prompt.PromptForExpression();
                 object[] userExpressionObject = parse.ParseExpression(userExpressionString);
                 double answer = math.DoMath(userExpressionObject);
-                prompt.ReturnExpressionAnswer(answer);
+                Console.WriteLine(prompt.ReturnExpressionAnswer(answer));
             }
         }
     }

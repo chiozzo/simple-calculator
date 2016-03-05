@@ -28,10 +28,11 @@ namespace Calc
             return userExpressionString;
         }
 
-        public void ReturnExpressionAnswer(double answer)
+        public string ReturnExpressionAnswer(double answer)
         {
-            Console.WriteLine("   = {0}", answer);
+            string ans = String.Format("   = {0}", answer);
             counter++;
+            return ans;
         }
     }
 }

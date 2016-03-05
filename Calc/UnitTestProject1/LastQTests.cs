@@ -11,7 +11,7 @@ namespace CalcTest
         public void ProveRetrieveLastQ()
         {
             // Arrange
-            LastExpression lastQ= new LastExpression();
+            LastExpression lastQ = new LastExpression();
             lastQ.lastQ = "5 + 7";
             // Act
             string actual = "5 + 7";
