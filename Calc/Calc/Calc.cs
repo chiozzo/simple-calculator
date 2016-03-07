@@ -17,7 +17,17 @@ namespace Calc
             while (true)
             {
                 string userExpressionString = prompt.PromptForExpression();
-                object[] userExpressionObject = parse.ParseExpression(userExpressionString);
+                object[] userExpressionObject;
+                if (userExpressionString == "lastq")
+                {
+                    userExpressionObject = math.GetLastQ();
+                    string lastQString = String.Format("{0}{1}{2}", userExpressionObject[0], userExpressionObject[1], userExpressionObject[2]);
+                    Console.Write(lastQString);
+                    // need to console write userExpressionObject after conversion to string
+                } else
+                {
+                    userExpressionObject = parse.ParseExpression(userExpressionString);
+                }
                 double answer = math.DoMath(userExpressionObject);
                 Console.WriteLine(prompt.ReturnExpressionAnswer(answer));
             }
