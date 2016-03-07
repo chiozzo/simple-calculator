@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Calc
 {
-    public class Operations
+    public class Operations : LastExpression
     {
+
         public double DoMath(object[] parsedExpression)
         {
             char operand;
@@ -18,9 +19,10 @@ namespace Calc
             }
             catch (Exception)
             {
-
                 throw new InvalidCastException("Encountered a problem using your operand.");
             }
+
+            SetLastQ(parsedExpression);
 
             if (operand == '+')
             {

@@ -59,6 +59,7 @@ namespace Calc
             }
 
             object[] parsedExpression = { term1, operand, term2 };
+
             return parsedExpression;
         }
     }

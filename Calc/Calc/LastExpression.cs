@@ -8,6 +8,16 @@ namespace Calc
 {
     public class LastExpression
     {
-        public string lastQ { get; set; }
+        private object[] lastQ { get; set; }
+
+        public object[] GetLastQ()
+        {
+            return lastQ;
+        }
+
+        public void SetLastQ(object[] expressionObject)
+        {
+            lastQ = expressionObject;
+        }
     }
 }
