@@ -12,12 +12,26 @@ namespace CalcTest
         {
             // Arrange
             LastExpression lastQ = new LastExpression();
-            lastQ.lastQ = "5 + 7";
+            lastQ.SetLastQ(new object[] { 5, '+', 7});
             // Act
-            string actual = "5 + 7";
-            string expected = lastQ.lastQ;
+            object[] actual = { 5, '+', 7 };
+            object[] expected = lastQ.GetLastQ();
             // Assert
-            Assert.AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ProveSavedOnDoMath()
+        {
+            // Arrange
+            Operations lastQ = new Operations();
+            object[] testExpression = { 7, '+', 93 };
+            // Act
+            lastQ.DoMath(testExpression);
+            object[] expected = testExpression;
+            object[] actual = lastQ.GetLastQ();
+            // Assert
+            CollectionAssert.AreEqual(expected, actual);
         }
     }
 }
