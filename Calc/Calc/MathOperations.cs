@@ -11,18 +11,8 @@ namespace Calc
 
         public double DoMath(object[] parsedExpression)
         {
-            char operand;
-
-            try
-            {
-                operand = (char)parsedExpression[1];
-            }
-            catch (Exception)
-            {
-                throw new InvalidCastException("Encountered a problem using your operand.");
-            }
-
             SetLastQ(parsedExpression);
+            char operand = (char)parsedExpression[1];
 
             if (operand == '+')
             {
@@ -44,7 +34,10 @@ namespace Calc
             {
                 return Modulo(parsedExpression);
             }
-            return 0;
+            else
+            {
+                throw new Exception();
+            }
         }
 
         public int Add(object[] parsedExpression)
