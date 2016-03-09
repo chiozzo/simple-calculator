@@ -23,7 +23,7 @@ namespace Calc
         public object[] ParseExpression(string userExpression)
         {
             string userExpressionString = userExpression.Replace(" ", "");
-            int operandIndex = userExpressionString.IndexOfAny(new char[] { '+', '-', '*', '/', '%' }, 1);
+            int operandIndex = userExpressionString.IndexOfAny(new char[] { '+', '-', '*', '/', '%', '=' }, 1);
 
             if (operandIndex == -1)
             {
@@ -31,6 +31,16 @@ namespace Calc
             }
             char operand = userExpressionString[operandIndex];
             string[] terms = userExpression.Split(operand);
+            if (operand == '=')
+            {
+                string constantUpper = terms[0].ToUpper();
+                int constantIndex = terms[0].IndexOfAny(new char[] { 'A', 'B', 'B', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' });
+                if (constantIndex == -1)
+                {
+                    throw new ArgumentException("You didn't provide a valid letter for your constant.");
+                }
+
+            }
             // It seems this condition is always true. What is going on here? Is terms[1] == "" when "5+" is provided?
             if (terms.Length != 2)
             {
