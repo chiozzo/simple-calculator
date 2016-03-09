@@ -33,5 +33,19 @@ namespace CalcTest
             // Assert
             CollectionAssert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void ProveAnswerFromLastQ()
+        {
+            // Arrange
+            Operations lastQ = new Operations();
+            object[] testExpression = { 7, '+', 93 };
+            // Act
+            lastQ.SetLastQ(testExpression);
+            int expected = 100;
+            double actual = lastQ.DoMath(lastQ.GetLastQ());
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

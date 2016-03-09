@@ -8,7 +8,7 @@ namespace Calc
 {
     public class Stack
     {
-        private object[] lastQ { get; set; }
+        public object[] lastQ { get; private set; }
 
         public object[] GetLastQ()
         {
