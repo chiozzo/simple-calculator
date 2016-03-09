@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calc
 {
-    public class LastExpression
+    public class Stack
     {
         private object[] lastQ { get; set; }
 

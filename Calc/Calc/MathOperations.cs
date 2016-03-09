@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calc
 {
-    public class Operations : LastExpression
+    public class Operations : Stack
     {
 
         public double DoMath(object[] parsedExpression)
