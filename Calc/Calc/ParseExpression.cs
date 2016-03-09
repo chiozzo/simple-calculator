@@ -38,26 +38,18 @@ namespace Calc
             }
 
             int term1;
-            int term2;
-
-            try
-            {
-                term1 = Convert.ToInt32(terms[0]);
-            }
-            catch (Exception)
+            bool success = int.TryParse(terms[0], out term1);
+            if (!success)
             {
                 throw new ArgumentException("Your first term is not a valid integer.");
             }
-
-            try
-            {
-                term2 = Convert.ToInt32(terms[1]);
-            }
-            catch (Exception)
+            int term2;
+            success = int.TryParse(terms[1], out term2);
+            if (!success)
             {
                 throw new ArgumentException("Your second term is not a valid integer.");
             }
-
+            
             object[] parsedExpression = { term1, operand, term2 };
 
             return parsedExpression;

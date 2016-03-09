@@ -11,7 +11,7 @@ namespace CalcTest
         public void ProveRetrieveLastQ()
         {
             // Arrange
-            LastExpression lastQ = new LastExpression();
+            Stack lastQ = new Stack();
             lastQ.SetLastQ(new object[] { 5, '+', 7});
             // Act
             object[] actual = { 5, '+', 7 };
