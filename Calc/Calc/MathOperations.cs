@@ -13,8 +13,13 @@ namespace Calc
         {
             SetLastQ(parsedExpression);
             char operand = (char)parsedExpression[1];
+            if (operand == '=')
+            {
 
-            if (operand == '+')
+                constants.Add(char.ToUpper((char)parsedExpression[0]), (int)parsedExpression[2]);
+                return (int)parsedExpression[2];
+            }
+            else if (operand == '+')
             {
                 return Add(parsedExpression);
             }

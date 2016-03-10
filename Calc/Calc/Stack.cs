@@ -10,6 +10,15 @@ namespace Calc
     {
         public object[] lastQ { get; private set; }
 
+        public Dictionary<char, int> constants = new Dictionary<char, int>();
+
+        public int GetConstant(char key)
+        {
+            int value;
+            constants.TryGetValue(key, out value);
+            return value;
+        }
+
         public object[] GetLastQ()
         {
             return lastQ;
