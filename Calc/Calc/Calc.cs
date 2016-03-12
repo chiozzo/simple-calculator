@@ -16,19 +16,25 @@ namespace Calc
             Operations math = new Operations();
             while (true)
             {
-                string userExpressionString = prompt.PromptForExpression();
+                Console.WriteLine(prompt.PromptForExpression());
+                string userExpressionString = Console.ReadLine();
                 object[] userExpressionObject;
                 if (userExpressionString == "lastq")
                 {
-                    userExpressionObject = math.GetLastQ();
-                    string lastQString = String.Format("{0}{1}{2}", userExpressionObject[0], userExpressionObject[1], userExpressionObject[2]);
-                    Console.Write(lastQString);
-                    // need to console write userExpressionObject after conversion to string
+                    userExpressionObject = prompt.ReturnLastExpressionObject();
+                    Console.Write(prompt.ReturnLastExpressionString());
                 } else
                 {
                     userExpressionObject = parse.ParseExpression(userExpressionString);
                 }
-                double answer = math.DoMath(userExpressionObject);
+
+                double answer;
+                if (userExpressionObject[0] != typeof(int))
+                {
+                    userExpressionObject[0] = math.GetConstant((char)userExpressionObject[0]);
+                }
+                answer = prompt.math.DoMath(userExpressionObject);
+
                 Console.WriteLine(prompt.ReturnExpressionAnswer(answer));
             }
         }
