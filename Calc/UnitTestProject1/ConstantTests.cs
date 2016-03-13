@@ -8,26 +8,56 @@ namespace UnitTestProject1
     public class ConstantTests
     {
         [TestMethod]
-        public void ProveConstantSaved()
+        public void ProveRetrieveLastQ()
         {
             // Arrange
-            Operations constant = new Operations();
-            object[] testExpression = { 'x', '=', 5 };
+            Stack stack = new Stack();
+            stack.SetLastQ(new object[] { 5, '+', 7 });
             // Act
-            double actual = constant.DoMath(testExpression);
-            int expected = 5;
+            object[] actual = { 5, '+', 7 };
+            object[] expected = stack.lastQ;
+            // Assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ProveLastQSavedOnParse()
+        {
+            // Arrange
+            Stack stack = new Stack();
+            Expression parse = new Expression();
+            string testExpression = "7 + 93";
+            // Act
+            object[] expected = parse.ParseExpression(testExpression, stack);
+            object[] actual = stack.lastQ;
+            // Assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ProveAnswerFromLastQ()
+        {
+            // Arrange
+            Stack stack = new Stack();
+            Operations math = new Operations();
+            object[] testExpression = { 7, '+', 93 };
+            // Act
+            stack.SetLastQ(testExpression);
+            int expected = 100;
+            double actual = math.DoMath(stack.lastQ, stack);
             // Assert
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void ProveGetConstant()
+        public void ProveSetAndGetConstant()
         {
             // Arrange
-            Operations constant = new Operations();
-            object[] testExpression = { 'c', '=', 42 };
+            Expression parse = new Expression();
+            Stack constant = new Stack();
+            string testExpression = "c = 42";
             // Act
-            constant.DoMath(testExpression);
+            parse.ParseExpression(testExpression, constant);
             int expected = 42;
             int actual = constant.GetConstant('C');
             // Assert

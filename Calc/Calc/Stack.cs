@@ -19,11 +19,6 @@ namespace Calc
             return value;
         }
 
-        public object[] GetLastQ()
-        {
-            return lastQ;
-        }
-
         public void SetLastQ(object[] expressionObject)
         {
             lastQ = expressionObject;

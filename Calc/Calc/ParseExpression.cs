@@ -20,25 +20,31 @@ namespace Calc
             return counter++;
         }
 
-        public object[] ParseExpression(string userExpression)
+        public object[] ParseExpression(string userExpression, Stack stack)
         {
             string userExpressionString = userExpression.Replace(" ", "");
             int operandIndex = userExpressionString.IndexOfAny(new char[] { '+', '-', '*', '/', '%', '=' }, 1);
-
             if (operandIndex == -1)
             {
                 throw new ArgumentException("You didn't provide a valid operator.");
             }
             char operand = userExpressionString[operandIndex];
-            string[] terms = userExpression.Split(operand);
+            string[] terms = userExpressionString.Split(operand);
+
+            if (terms.Length > 2)
+            {
+                throw new ArgumentException("Your expression has too many parts.");
+            }
+
             if (operand == '=')
             {
-                string constantUpper = terms[0].ToUpper();
-                int constantIndex = terms[0].IndexOfAny(new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' });
+                userExpressionString = userExpressionString.ToUpper();
+                int constantIndex = userExpressionString.IndexOfAny(new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' });
                 if (constantIndex == -1)
                 {
                     throw new ArgumentException("You didn't provide a valid letter for your constant.");
                 }
+                char constantUpper = char.ToUpper(userExpressionString[constantIndex]);
 
                 int term;
                 bool success = int.TryParse(terms[1], out term);
@@ -47,6 +53,7 @@ namespace Calc
                     throw new ArgumentException("The term you're assigning is not a valid integer.");
                 }
 
+                stack.constants.Add(constantUpper, term);
                 return new object[] { constantUpper, operand, term };
             }
             else
@@ -70,6 +77,7 @@ namespace Calc
                     throw new ArgumentException("Your second term is not a valid integer.");
                 }
 
+                stack.SetLastQ(new object[] { term1, operand, term2 });
                 return new object[] { term1, operand, term2 };
             }
         }

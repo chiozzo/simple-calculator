@@ -21,11 +21,12 @@ namespace CalcTest
         public void ProveExpressionParsed()
         {
             // Arrange - Scenario Setup
+            Stack stack = new Stack();
             Expression parseExpression = new Expression();
             string testExpressionSpace = "5 + 6";
             // Act - Do the thing you want to test
             object[] expected = { 5, '+', 6 };
-            object[] actual = parseExpression.ParseExpression(testExpressionSpace);
+            object[] actual = parseExpression.ParseExpression(testExpressionSpace, stack);
             // Assert - Did it work as expected?
             CollectionAssert.AreEqual(expected, actual);
         }
@@ -34,45 +35,40 @@ namespace CalcTest
         [ExpectedException(typeof(ArgumentException))]
         public void ProveBadExpressionNotEnoughTerms()
         {
+            Stack stack = new Stack();
             Expression parseExpression = new Expression();
             string badTestExpression = "+2";
-            parseExpression.ParseExpression(badTestExpression);
+            parseExpression.ParseExpression(badTestExpression, stack);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void ProveBadExpressionNotEnoughTermsWithLetter()
         {
+            Stack stack = new Stack();
             Expression parseExpression = new Expression();
             string badTestExpression = "x+2";
-            parseExpression.ParseExpression(badTestExpression);
+            parseExpression.ParseExpression(badTestExpression, stack);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void ProveBadExpressionOutOfOrder()
         {
+            Stack stack = new Stack();
             Expression parseExpression = new Expression();
             string badTestExpression = "75 75 -";
-            parseExpression.ParseExpression(badTestExpression);
+            parseExpression.ParseExpression(badTestExpression, stack);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void ProveBadExpressionEquals()
         {
+            Stack stack = new Stack();
             Expression parseExpression = new Expression();
             string badTestExpression = "6 = 9";
-            parseExpression.ParseExpression(badTestExpression);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void ProveBadExpressionConstant()
-        {
-            Expression parseExpression = new Expression();
-            string badTestExpression = "x = 7";
-            parseExpression.ParseExpression(badTestExpression);
+            parseExpression.ParseExpression(badTestExpression, stack);
         }
     }
 }

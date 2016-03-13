@@ -56,7 +56,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OperationTests.cs" />
     <Compile Include="TerminalTests.cs" />
-    <Compile Include="LastQTests.cs" />
     <Compile Include="ConstantTests.cs" />
   </ItemGroup>
   <ItemGroup>

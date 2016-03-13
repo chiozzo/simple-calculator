@@ -14,6 +14,7 @@ namespace Calc
             Expression parse = new Expression();
             Terminal prompt = new Terminal();
             Operations math = new Operations();
+            Stack stack = new Stack();
             while (true)
             {
                 Console.WriteLine(prompt.PromptForExpression());
