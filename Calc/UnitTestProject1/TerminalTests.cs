@@ -37,12 +37,13 @@ namespace CalcTest
             {
                 userExpressionObject = parse.ParseExpression(userInput, stack);
             }
-
             double answer;
+            /*
             if (userExpressionObject[0] is int)
             {
                 userExpressionObject[0] = stack.GetConstant((char)userExpressionObject[0]);
             }
+            */
             answer = math.DoMath(userExpressionObject);
             userExpressionObject = prompt.ReturnLastExpressionObject(stack);
         }
