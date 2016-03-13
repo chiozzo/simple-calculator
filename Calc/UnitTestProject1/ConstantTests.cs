@@ -44,7 +44,7 @@ namespace UnitTestProject1
             // Act
             stack.SetLastQ(testExpression);
             int expected = 100;
-            double actual = math.DoMath(stack.lastQ, stack);
+            double actual = math.DoMath(stack.lastQ);
             // Assert
             Assert.AreEqual(expected, actual);
         }

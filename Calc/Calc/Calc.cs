@@ -34,7 +34,7 @@ namespace Calc
                 {
                     userExpressionObject[0] = stack.GetConstant((char)userExpressionObject[0]);
                 }
-                answer = math.DoMath(userExpressionObject, stack);
+                answer = math.DoMath(userExpressionObject);
 
                 Console.WriteLine(prompt.ReturnExpressionAnswer(answer));
             }

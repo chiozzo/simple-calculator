@@ -8,7 +8,7 @@ namespace Calc
 {
     public class Operations
     {
-        public double DoMath(object[] parsedExpression, Stack stack)
+        public double DoMath(object[] parsedExpression)
         {
             char operand = (char)parsedExpression[1];
             if (operand == '=')
