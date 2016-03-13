@@ -22,19 +22,19 @@ namespace Calc
                 object[] userExpressionObject;
                 if (userExpressionString == "lastq")
                 {
-                    userExpressionObject = prompt.ReturnLastExpressionObject();
-                    Console.Write(prompt.ReturnLastExpressionString());
+                    userExpressionObject = prompt.ReturnLastExpressionObject(stack);
+                    Console.Write(prompt.ReturnLastExpressionString(stack));
                 } else
                 {
-                    userExpressionObject = parse.ParseExpression(userExpressionString);
+                    userExpressionObject = parse.ParseExpression(userExpressionString, stack);
                 }
 
                 double answer;
-                if (userExpressionObject[0] != typeof(int))
+                if (userExpressionObject[0] is int)
                 {
-                    userExpressionObject[0] = math.GetConstant((char)userExpressionObject[0]);
+                    userExpressionObject[0] = stack.GetConstant((char)userExpressionObject[0]);
                 }
-                answer = prompt.math.DoMath(userExpressionObject);
+                answer = math.DoMath(userExpressionObject, stack);
 
                 Console.WriteLine(prompt.ReturnExpressionAnswer(answer));
             }

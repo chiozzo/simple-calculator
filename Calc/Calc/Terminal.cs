@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Calc
 {
-    class Terminal
+    public class Terminal
     {
-        public Operations math = new Operations();
         public int counter { get; set; }
 
         public Terminal()
@@ -34,14 +33,14 @@ namespace Calc
             return ans;
         }
 
-        public string ReturnLastExpressionString()
+        public string ReturnLastExpressionString(Stack stack)
         {
-            return string.Format("{0}{1}{2}", math.GetLastQ());
+            return string.Format("{0}{1}{2}", stack.lastQ);
         }
 
-        public object[] ReturnLastExpressionObject()
+        public object[] ReturnLastExpressionObject(Stack stack)
         {
-            return math.GetLastQ();
+            return stack.lastQ;
         }
     }
 }
