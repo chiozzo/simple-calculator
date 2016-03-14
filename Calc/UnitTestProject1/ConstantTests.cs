@@ -59,7 +59,8 @@ namespace CalcTest
             // Act
             parse.ParseExpression(testExpression, constant);
             int expected = 42;
-            int actual = constant.GetConstant('C');
+            int actual;
+            constant.constants.TryGetValue('C', out actual);
             // Assert
             Assert.AreEqual(expected, actual);
         }

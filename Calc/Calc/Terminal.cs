@@ -15,12 +15,6 @@ namespace Calc
             counter = 0;
         }
 
-        public int IncrementExpressionCounter()
-        {
-            counter++;
-            return counter;
-        }
-
         public string PromptForExpression()
         {
             return String.Format("[{0}]> ", counter);
@@ -35,7 +29,7 @@ namespace Calc
 
         public string ReturnLastExpressionString(Stack stack)
         {
-            return string.Format("{0}{1}{2}", stack.lastQ);
+            return string.Format("     {0}{1}{2}", stack.lastQ);
         }
     }
 }

@@ -68,7 +68,18 @@ namespace Calc
                 if (!success)
                 {
                     // insert logic to determine if a constant was used in the expression
-                    throw new ArgumentException("Your first term is not a valid integer.");
+                    char constantLookup = char.ToUpper(terms[0][0]);
+                    if (stack.constants.ContainsKey(constantLookup))
+                    {
+                        if (!stack.constants.TryGetValue(constantLookup, out term1))
+                        {
+                            throw new ArgumentException("You have not saved that constant.");
+                        }
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Your first term is not a valid integer.");
+                    }
                 }
                 int term2;
                 success = int.TryParse(terms[1], out term2);

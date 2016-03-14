@@ -26,8 +26,8 @@ namespace CalcTest
             // Assert
             Assert.AreEqual(stack.lastQ, testLastQ);
             /*
-            Move to line 67
-                Assert.AreEqual(response, "5+5");
+            Move to line 66 (Currently Inline)
+                Assert.AreEqual(response, "     5+5");
             */
         }
 
@@ -51,8 +51,8 @@ namespace CalcTest
             Assert.AreEqual(stack.lastQ, testLastQ);
             Assert.AreEqual(math.DoMath(testLastQ), testLastA);
             /*
-            Move to line 67
-                Assert.AreEqual("5+5   = 10", response);
+            Move to line 70 (Currently Inline)
+                Assert.AreEqual("   = 10", answer);
             */
         }
 
@@ -64,30 +64,33 @@ namespace CalcTest
                 userExpressionObject = stack.lastQ;
                 string response;
                 response = prompt.ReturnLastExpressionString(stack);
+                Assert.AreEqual(response, "     5+5");
+                Console.WriteLine(response);
                 if (userInput == "last")
                 {
-                    response = string.Format(response + prompt.ReturnExpressionAnswer(math.DoMath(userExpressionObject)));
+                    string answer = prompt.ReturnExpressionAnswer(math.DoMath(userExpressionObject));
+                    response = string.Format(response + answer);
+                    Assert.AreEqual("   = 10", answer);
+                    Console.WriteLine(answer);
                 }
-                Console.WriteLine(response);
             }
             else if (userInput == "exit" || userInput == "quit")
             {
-                Console.WriteLine("Bye!!");
                 throw new Exception("Help, I can't get out!");
             }
             else
             {
                 userExpressionObject = parse.ParseExpression(userInput, stack);
+                double answer;
+                /*
+                if (userExpressionObject[0] is int)
+                {
+                    userExpressionObject[0] = stack.GetConstant((char)userExpressionObject[0]);
+                }
+                */
+                answer = math.DoMath(userExpressionObject);
+                Console.WriteLine(prompt.ReturnExpressionAnswer(answer));
             }
-            double answer;
-            /*
-            if (userExpressionObject[0] is int)
-            {
-                userExpressionObject[0] = stack.GetConstant((char)userExpressionObject[0]);
-            }
-            */
-            answer = math.DoMath(userExpressionObject);
-            Console.WriteLine(prompt.ReturnExpressionAnswer(answer));
         }
     }
 }

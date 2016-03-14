@@ -12,13 +12,6 @@ namespace Calc
 
         public Dictionary<char, int> constants = new Dictionary<char, int>();
 
-        public int GetConstant(char key)
-        {
-            int value;
-            constants.TryGetValue(key, out value);
-            return value;
-        }
-
         public void SetLastQ(object[] expressionObject)
         {
             lastQ = expressionObject;

@@ -31,11 +31,13 @@ namespace Calc
                 userExpressionObject = stack.lastQ;
                 string response;
                 response = prompt.ReturnLastExpressionString(stack);
+                Console.WriteLine(response);
                 if (userInput == "last")
                 {
-                    response = string.Format(response + prompt.ReturnExpressionAnswer(math.DoMath(userExpressionObject)));
+                    string answer = prompt.ReturnExpressionAnswer(math.DoMath(userExpressionObject));
+                    response = string.Format(response + answer);
+                    Console.WriteLine(answer);
                 }
-                Console.WriteLine(response);
             }
             else if (userInput == "exit" || userInput == "quit")
             {
@@ -44,16 +46,16 @@ namespace Calc
             else
             {
                 userExpressionObject = parse.ParseExpression(userInput, stack);
+                double answer;
+                /*
+                if (userExpressionObject[0] is int)
+                {
+                    userExpressionObject[0] = stack.GetConstant((char)userExpressionObject[0]);
+                }
+                */
+                answer = math.DoMath(userExpressionObject);
+                Console.WriteLine(prompt.ReturnExpressionAnswer(answer));
             }
-            double answer;
-            /*
-            if (userExpressionObject[0] is int)
-            {
-                userExpressionObject[0] = stack.GetConstant((char)userExpressionObject[0]);
-            }
-            */
-            answer = math.DoMath(userExpressionObject);
-            Console.WriteLine(prompt.ReturnExpressionAnswer(answer));
         }
     }
 }
