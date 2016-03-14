@@ -28,6 +28,10 @@ namespace Calc
             object[] userExpressionObject;
             if (userInput == "lastq" || userInput == "last")
             {
+                if (stack.lastQ == null)
+                {
+                    throw new ArgumentException("Last what? You haven't asked me anything yet.");
+                }
                 userExpressionObject = stack.lastQ;
                 string response;
                 response = prompt.ReturnLastExpressionString(stack);
