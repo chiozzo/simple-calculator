@@ -30,7 +30,7 @@ namespace Calc
         public string ReturnLastExpressionString(Stack stack)
         {
             /* should I be incrementing counter on 
-                every command (i.e. last, lastq, constant assignement)
+                every command (i.e. last, lastq, constant assignment)
                 or every new expression (i.e. int + int) */
             return string.Format("     {0}{1}{2}", stack.lastQ);
         }

@@ -67,7 +67,6 @@ namespace Calc
                 bool success = int.TryParse(terms[0], out term1);
                 if (!success)
                 {
-                    // insert logic to determine if a constant was used in the expression
                     char constantLookup = char.ToUpper(terms[0][0]);
                     if (stack.constants.ContainsKey(constantLookup))
                     {
