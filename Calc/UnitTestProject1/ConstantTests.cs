@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Calc;
 
-namespace UnitTestProject1
+namespace CalcTest
 {
     [TestClass]
     public class ConstantTests

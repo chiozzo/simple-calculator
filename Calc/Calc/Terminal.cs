@@ -28,19 +28,14 @@ namespace Calc
 
         public string ReturnExpressionAnswer(double answer)
         {
-            string ans = String.Format("   = {0}", answer);
+            string stringAnswer = String.Format("   = {0}", answer);
             counter++;
-            return ans;
+            return stringAnswer;
         }
 
         public string ReturnLastExpressionString(Stack stack)
         {
             return string.Format("{0}{1}{2}", stack.lastQ);
-        }
-
-        public object[] ReturnLastExpressionObject(Stack stack)
-        {
-            return stack.lastQ;
         }
     }
 }

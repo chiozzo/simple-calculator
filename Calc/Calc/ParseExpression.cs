@@ -22,14 +22,13 @@ namespace Calc
 
         public object[] ParseExpression(string userExpression, Stack stack)
         {
-            string userExpressionString = userExpression.Replace(" ", "");
-            int operandIndex = userExpressionString.IndexOfAny(new char[] { '+', '-', '*', '/', '%', '=' }, 1);
+            int operandIndex = userExpression.IndexOfAny(new char[] { '+', '-', '*', '/', '%', '=' }, 1);
             if (operandIndex == -1)
             {
                 throw new ArgumentException("You didn't provide a valid operator.");
             }
-            char operand = userExpressionString[operandIndex];
-            string[] terms = userExpressionString.Split(operand);
+            char operand = userExpression[operandIndex];
+            string[] terms = userExpression.Split(operand);
 
             if (terms.Length > 2)
             {
@@ -38,13 +37,13 @@ namespace Calc
 
             if (operand == '=')
             {
-                userExpressionString = userExpressionString.ToUpper();
-                int constantIndex = userExpressionString.IndexOfAny(new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' });
+                userExpression = userExpression.ToUpper();
+                int constantIndex = userExpression.IndexOfAny(new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' });
                 if (constantIndex == -1)
                 {
                     throw new ArgumentException("You didn't provide a valid letter for your constant.");
                 }
-                char constantUpper = char.ToUpper(userExpressionString[constantIndex]);
+                char constantUpper = char.ToUpper(userExpression[constantIndex]);
 
                 int term;
                 bool success = int.TryParse(terms[1], out term);
@@ -68,6 +67,7 @@ namespace Calc
                 bool success = int.TryParse(terms[0], out term1);
                 if (!success)
                 {
+                    // insert logic to determine if a constant was used in the expression
                     throw new ArgumentException("Your first term is not a valid integer.");
                 }
                 int term2;

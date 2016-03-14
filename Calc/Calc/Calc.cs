@@ -17,27 +17,43 @@ namespace Calc
             Stack stack = new Stack();
             while (true)
             {
-                Console.WriteLine(prompt.PromptForExpression());
-                string userExpressionString = Console.ReadLine();
-                object[] userExpressionObject;
-                if (userExpressionString == "lastq")
-                {
-                    userExpressionObject = prompt.ReturnLastExpressionObject(stack);
-                    Console.Write(prompt.ReturnLastExpressionString(stack));
-                } else
-                {
-                    userExpressionObject = parse.ParseExpression(userExpressionString, stack);
-                }
-
-                double answer;
-                if (userExpressionObject[0] is int)
-                {
-                    userExpressionObject[0] = stack.GetConstant((char)userExpressionObject[0]);
-                }
-                answer = math.DoMath(userExpressionObject);
-
-                Console.WriteLine(prompt.ReturnExpressionAnswer(answer));
+                Console.Write(prompt.PromptForExpression());
+                string userInput = Console.ReadLine().Replace(" ", "");
+                RunProgram(userInput, prompt, parse, math, stack);
             }
+        }
+
+        public static void RunProgram(string userInput, Terminal prompt, Expression parse, Operations math, Stack stack)
+        {
+            object[] userExpressionObject;
+            if (userInput == "lastq" || userInput == "last")
+            {
+                userExpressionObject = stack.lastQ;
+                string response;
+                response = prompt.ReturnLastExpressionString(stack);
+                if (userInput == "last")
+                {
+                    response = string.Format(response + prompt.ReturnExpressionAnswer(math.DoMath(userExpressionObject)));
+                }
+                Console.WriteLine(response);
+            }
+            else if (userInput == "exit" || userInput == "quit")
+            {
+                throw new Exception("Help, I can't get out!");
+            }
+            else
+            {
+                userExpressionObject = parse.ParseExpression(userInput, stack);
+            }
+            double answer;
+            /*
+            if (userExpressionObject[0] is int)
+            {
+                userExpressionObject[0] = stack.GetConstant((char)userExpressionObject[0]);
+            }
+            */
+            answer = math.DoMath(userExpressionObject);
+            Console.WriteLine(prompt.ReturnExpressionAnswer(answer));
         }
     }
 }
