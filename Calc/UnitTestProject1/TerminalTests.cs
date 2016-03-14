@@ -72,6 +72,7 @@ namespace CalcTest
             }
             else if (userInput == "exit" || userInput == "quit")
             {
+                Console.WriteLine("Bye!!");
                 throw new Exception("Help, I can't get out!");
             }
             else
