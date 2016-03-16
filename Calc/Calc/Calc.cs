@@ -15,15 +15,16 @@ namespace Calc
             Terminal prompt = new Terminal();
             Operations math = new Operations();
             Stack stack = new Stack();
+            bool running = true;
             while (true)
             {
                 Console.Write(prompt.PromptForExpression());
                 string userInput = Console.ReadLine().Replace(" ", "");
-                RunProgram(userInput, prompt, parse, math, stack);
+                RunProgram(userInput, prompt, parse, math, stack, running);
             }
         }
 
-        public static void RunProgram(string userInput, Terminal prompt, Expression parse, Operations math, Stack stack)
+        public static void RunProgram(string userInput, Terminal prompt, Expression parse, Operations math, Stack stack, bool running)
         {
             object[] userExpressionObject;
             if (userInput == "lastq" || userInput == "last")
@@ -45,7 +46,7 @@ namespace Calc
             }
             else if (userInput == "exit" || userInput == "quit")
             {
-                throw new Exception("Help, I can't get out!");
+                Environment.Exit(0);
             }
             else
             {
