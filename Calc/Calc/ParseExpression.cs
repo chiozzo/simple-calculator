@@ -67,7 +67,7 @@ namespace Calc
                 }
                 object[] lastExpression = { term1, operand, term2 };
                 stack.lastQ = lastExpression;
-                return new object[] { term1, operand, term2 };
+                return lastExpression;
             }
         }
     }
