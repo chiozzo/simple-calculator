@@ -37,23 +37,8 @@ namespace Calc
 
             if (operand == '=')
             {
-                userExpression = userExpression.ToUpper();
-                int constantIndex = userExpression.IndexOfAny(new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' });
-                if (constantIndex == -1)
-                {
-                    throw new ArgumentException("You didn't provide a valid letter for your constant.");
-                }
-                char constantUpper = char.ToUpper(userExpression[constantIndex]);
-
-                int term;
-                bool success = int.TryParse(terms[1], out term);
-                if (!success)
-                {
-                    throw new ArgumentException("The term you're assigning is not a valid integer.");
-                }
-
-                stack.constants.Add(constantUpper, term);
-                return new object[] { constantUpper, operand, term };
+                object[] assignedConstant = stack.SetConstant(userExpression, terms);
+                return new object[] { assignedConstant[0], operand, assignedConstant[1] };
             }
             else
             {
@@ -68,14 +53,8 @@ namespace Calc
                 if (!success)
                 {
                     char constantLookup = char.ToUpper(terms[0][0]);
-                    if (stack.constants.ContainsKey(constantLookup))
-                    {
-                        if (!stack.constants.TryGetValue(constantLookup, out term1))
-                        {
-                            throw new ArgumentException("You have not saved that constant.");
-                        }
-                    }
-                    else
+                    term1 = stack.GetConstantValue(constantLookup);
+                    if (term1 == 0)
                     {
                         throw new ArgumentException("Your first term is not a valid integer.");
                     }
@@ -86,8 +65,8 @@ namespace Calc
                 {
                     throw new ArgumentException("Your second term is not a valid integer.");
                 }
-
-                stack.SetLastQ(new object[] { term1, operand, term2 });
+                object[] lastExpression = { term1, operand, term2 };
+                stack.lastQ = lastExpression;
                 return new object[] { term1, operand, term2 };
             }
         }

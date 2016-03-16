@@ -12,7 +12,8 @@ namespace CalcTest
         {
             // Arrange
             Stack stack = new Stack();
-            stack.SetLastQ(new object[] { 5, '+', 7 });
+            object[] testExpression = { 5, '+', 7 };
+            stack.lastQ = testExpression;
             // Act
             object[] actual = { 5, '+', 7 };
             object[] expected = stack.lastQ;
@@ -42,7 +43,7 @@ namespace CalcTest
             Operations math = new Operations();
             object[] testExpression = { 7, '+', 93 };
             // Act
-            stack.SetLastQ(testExpression);
+            stack.lastQ = testExpression;
             int expected = 100;
             double actual = math.DoMath(stack.lastQ);
             // Assert

@@ -16,15 +16,15 @@ namespace CalcTest
             Terminal prompt = new Terminal();
             Operations math = new Operations();
             Stack stack = new Stack();
-            object[] testLastQ = { 5, '+', 5 };
-            stack.SetLastQ(testLastQ);
+            object[] testExpression = { 5, '+', 5 };
+            stack.lastQ = testExpression;
 
             // Act
             string userInput = "lastq";
             RunProgram(userInput, prompt, parse, math, stack);
 
             // Assert
-            Assert.AreEqual(stack.lastQ, testLastQ);
+            Assert.AreEqual(stack.lastQ, testExpression);
             /*
             Move to line 66 (Currently Inline)
                 Assert.AreEqual(response, "     5+5");
@@ -39,17 +39,17 @@ namespace CalcTest
             Terminal prompt = new Terminal();
             Operations math = new Operations();
             Stack stack = new Stack();
-            object[] testLastQ = { 5, '+', 5 };
+            object[] testExpression = { 5, '+', 5 };
             double testLastA = 10;
-            stack.SetLastQ(testLastQ);
+            stack.lastQ = testExpression;
 
             // Act
             string userInput = "last";
             RunProgram(userInput, prompt, parse, math, stack);
 
             // Assert
-            Assert.AreEqual(stack.lastQ, testLastQ);
-            Assert.AreEqual(math.DoMath(testLastQ), testLastA);
+            Assert.AreEqual(stack.lastQ, testExpression);
+            Assert.AreEqual(math.DoMath(testExpression), testLastA);
             /*
             Move to line 70 (Currently Inline)
                 Assert.AreEqual("   = 10", answer);
