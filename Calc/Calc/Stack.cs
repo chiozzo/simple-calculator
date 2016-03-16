@@ -15,13 +15,13 @@ namespace Calc
         public int GetConstantValue(char constantLookup)
         {
             int constantValue = 0;
-            if (!constants.ContainsKey(constantLookup))
+            if (constants.ContainsKey(constantLookup))
             {
                 if (!constants.TryGetValue(constantLookup, out constantValue))
                 {
                     throw new ArgumentException("I could not retrieve the constant value.");
+                    //throw new ArgumentException("You have not saved that constant.");
                 }
-                throw new ArgumentException("You have not saved that constant.");
             }
             return constantValue;
         }
